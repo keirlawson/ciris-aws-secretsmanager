@@ -1,4 +1,4 @@
-ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+sonatypeCredentialHost := "s01.oss.sonatype.org"
 
 name := "ciris-aws-secretsmanager"
 organization := "io.github.keirlawson"
