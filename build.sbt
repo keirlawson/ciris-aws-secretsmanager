@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
   "is.cir" %% "ciris" % "3.1.0",
   "org.typelevel" %% "cats-core" % "2.9.0",
   "org.typelevel" %% "cats-effect" % "3.4.8",
-  "software.amazon.awssdk" % "secretsmanager" % "2.20.32",
+  "software.amazon.awssdk" % "secretsmanager" % "2.22.3",
   "org.typelevel" %% "munit-cats-effect-3" % "1.0.6" % Test
 )
 
