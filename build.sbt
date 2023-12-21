@@ -1,5 +1,7 @@
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+
 name := "ciris-aws-secretsmanager"
-organization := "com.ovoenergy"
+organization := "io.github.keirlawson"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 scalaVersion := "3.2.2"
@@ -18,14 +20,14 @@ publishTo := sonatypePublishToBundle.value
 
 testFrameworks += new TestFramework("munit.Framework")
 
-sonatypeProfileName := "com.ovoenergy"
+sonatypeProfileName := "io.github.keirlawson"
 publishMavenStyle := true
 
-homepage := Some(url("https://github.com/ovotech/ciris-aws-secretsmanager"))
+homepage := Some(url("https://github.com/keirlawson/ciris-aws-secretsmanager"))
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/ovotech/ciris-aws-secretsmanager"),
-    "scm:git@github.com:ovotech/ciris-aws-secretsmanager.git"
+    url("https://github.com/keirlawson/ciris-aws-secretsmanager"),
+    "scm:git@github.com:keirlawson/ciris-aws-secretsmanager.git"
   )
 )
 developers := List(

@@ -10,7 +10,12 @@ package object secretsmanager {
   def secrets[F[_]: Sync](
     region: Region
   ): ConfigValue[F, SecretString[F]] =
-    secrets(SecretsManagerAsyncClient.builder().region(region.asJava).credentialsProvider(DefaultCredentialsProvider.create()))
+    secrets(
+      SecretsManagerAsyncClient
+        .builder()
+        .region(region.asJava)
+        .credentialsProvider(DefaultCredentialsProvider.create())
+    )
 
   def secrets[F[_]: Sync](
     clientBuilder: SecretsManagerAsyncClientBuilder

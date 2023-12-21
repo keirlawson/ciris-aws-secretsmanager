@@ -10,12 +10,12 @@ To get started with [sbt](https://www.scala-sbt.org), simply add the following l
 
 For Cats Effect 3:
 ```scala
-libraryDependencies += "com.ovoenergy" %% "ciris-aws-secretsmanager" % "5.0.1"
+libraryDependencies += "io.github.keirlawson" %% "ciris-aws-secretsmanager" % "5.0.1"
 ```
 
 For Cats Effect 2:
 ```scala
-libraryDependencies += "com.ovoenergy" %% "ciris-aws-secretsmanager" % "4.0.0"
+libraryDependencies += "io.github.keirlawson" %% "ciris-aws-secretsmanager" % "4.0.0"
 ```
 
 The library is published for Scala 2.12, 2.13 and 3.1.

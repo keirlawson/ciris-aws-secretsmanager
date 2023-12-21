@@ -19,21 +19,27 @@ private[secretsmanager] object SecretString {
       def apply(key: String, version: String): ConfigValue[F, Secret[String]] =
         fetch(key, GetSecretValueRequest.builder().secretId(key).versionId(version).build())
 
-
-      private def fetch(key: String, request: GetSecretValueRequest): ConfigValue[F, Secret[String]] =
-      ConfigValue.async { cb =>
-        val configKey =
-              ConfigKey(s"secret string $key from AWS secrets manager")
-        client.getSecretValue(request).whenComplete { (resp, error) =>
-          cb {
-            if (error != null) {
-              Left(error)
-            } else {
-              val str = Option(resp.secretString())
-              Right(str.fold(ConfigValue.missing[Secret[String]](configKey))( value => ConfigValue.loaded(configKey, value).secret))
+      private def fetch(
+        key: String,
+        request: GetSecretValueRequest
+      ): ConfigValue[F, Secret[String]] =
+        ConfigValue.async { cb =>
+          val configKey =
+            ConfigKey(s"secret string $key from AWS secrets manager")
+          client.getSecretValue(request).whenComplete { (resp, error) =>
+            cb {
+              if (error != null) {
+                Left(error)
+              } else {
+                val str = Option(resp.secretString())
+                Right(
+                  str.fold(ConfigValue.missing[Secret[String]](configKey))(
+                    value => ConfigValue.loaded(configKey, value).secret
+                  )
+                )
+              }
             }
           }
         }
-      }
     }
 }
