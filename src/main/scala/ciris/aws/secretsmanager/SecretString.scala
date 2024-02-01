@@ -1,5 +1,6 @@
 package ciris.aws.secretsmanager
 
+import cats.effect.Async
 import cats.implicits._
 import ciris.{ConfigKey, ConfigValue, Secret}
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerAsyncClient
@@ -11,7 +12,7 @@ sealed abstract class SecretString[F[_]] {
 }
 
 private[secretsmanager] object SecretString {
-  final def apply[F[_]](client: SecretsManagerAsyncClient): SecretString[F] =
+  final def apply[F[_]: Async](client: SecretsManagerAsyncClient): SecretString[F] =
     new SecretString[F] {
       override final def apply(key: String): ConfigValue[F, Secret[String]] =
         fetch(key, GetSecretValueRequest.builder().secretId(key).build())
@@ -23,7 +24,7 @@ private[secretsmanager] object SecretString {
         key: String,
         request: GetSecretValueRequest
       ): ConfigValue[F, Secret[String]] =
-        ConfigValue.async { cb =>
+        ConfigValue.async_ { cb =>
           val configKey =
             ConfigKey(s"secret string $key from AWS secrets manager")
           client.getSecretValue(request).whenComplete { (resp, error) =>

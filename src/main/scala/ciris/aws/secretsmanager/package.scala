@@ -1,13 +1,16 @@
 package ciris.aws
 
+import cats.effect.Async
 import cats.effect.kernel.{Resource, Sync}
 import ciris.ConfigValue
-import software.amazon.awssdk.auth.credentials.{AwsCredentialsProvider, DefaultCredentialsProvider}
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerAsyncClient
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerAsyncClientBuilder
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider
+import software.amazon.awssdk.services.secretsmanager.{
+  SecretsManagerAsyncClient,
+  SecretsManagerAsyncClientBuilder
+}
 
 package object secretsmanager {
-  def secrets[F[_]: Sync](
+  def secrets[F[_]: Async](
     region: Region
   ): ConfigValue[F, SecretString[F]] =
     secrets(
@@ -17,7 +20,7 @@ package object secretsmanager {
         .credentialsProvider(DefaultCredentialsProvider.create())
     )
 
-  def secrets[F[_]: Sync](
+  def secrets[F[_]: Async](
     clientBuilder: SecretsManagerAsyncClientBuilder
   ): ConfigValue[F, SecretString[F]] =
     ConfigValue.resource {

@@ -4,16 +4,16 @@ name := "ciris-aws-secretsmanager"
 organization := "io.github.keirlawson"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-scalaVersion := "3.2.2"
-crossScalaVersions := Seq(scalaVersion.value, "2.13.10", "2.12.17")
+scalaVersion := "3.3.1"
+crossScalaVersions := Seq(scalaVersion.value, "2.13.12", "2.12.18")
 releaseCrossBuild := true
 
 libraryDependencies ++= Seq(
-  "is.cir" %% "ciris" % "3.1.0",
-  "org.typelevel" %% "cats-core" % "2.9.0",
-  "org.typelevel" %% "cats-effect" % "3.4.8",
-  "software.amazon.awssdk" % "secretsmanager" % "2.22.3",
-  "org.typelevel" %% "munit-cats-effect-3" % "1.0.6" % Test
+  "is.cir" %% "ciris" % "3.5.0",
+  "org.typelevel" %% "cats-core" % "2.10.0",
+  "org.typelevel" %% "cats-effect" % "3.5.2",
+  "software.amazon.awssdk" % "secretsmanager" % "2.23.14",
+  "org.typelevel" %% "munit-cats-effect-3" % "1.0.7" % Test
 )
 
 publishTo := sonatypePublishToBundle.value
@@ -31,7 +31,12 @@ scmInfo := Some(
   )
 )
 developers := List(
-  Developer(id="keirlawson", name="Keir Lawson", email="keirlawson@gmail.com", url=url("https://github.com/keirlawson/"))
+  Developer(
+    id = "keirlawson",
+    name = "Keir Lawson",
+    email = "keirlawson@gmail.com",
+    url = url("https://github.com/keirlawson/")
+  )
 )
 
 import ReleaseTransformations._
