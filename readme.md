@@ -10,10 +10,10 @@ To get started with [sbt](https://www.scala-sbt.org), simply add the following l
 
 For Cats Effect 3:
 ```scala
-libraryDependencies += "io.github.keirlawson" %% "ciris-aws-secretsmanager" % "6.0.2"
+libraryDependencies += "io.github.keirlawson" %% "ciris-aws-secretsmanager" % "7.0.0"
 ```
 
-The library is published for Scala 2.12, 2.13 and 3.1.
+The library is published for Scala 2.12, 2.13 and 3.3.
 
 ### Example
 
